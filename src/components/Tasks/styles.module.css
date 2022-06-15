@@ -2,13 +2,23 @@
   margin-top: 1.5rem;
 }
 
-.task {
+.taskWrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
   padding: 1rem;
   border: 1px solid var(--gray-400);
   border-radius: 8px;
 
   background: var(--gray-500);
+}
 
+.taskWrapper + .taskWrapper {
+  margin-top: 0.75rem;
+}
+
+.task {
   display: flex;
   align-items: flex-start;
   gap: 12px;
@@ -17,10 +27,6 @@
 .check {
   height: 1.5rem;
   width: 1.5rem;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .checkButton {
@@ -31,6 +37,13 @@
   border-radius: 50%;
 
   background: 0;
+
+  transition: 0.2s;
+}
+
+.checkButton:hover {
+  border-color: var(--blue-dark);
+  background: rgba(30, 111, 159, 0.3);
 }
 
 .taskText {

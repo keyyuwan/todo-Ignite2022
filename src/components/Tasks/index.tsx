@@ -2,21 +2,27 @@ import { Trash } from "phosphor-react";
 
 import styles from "./styles.module.css";
 
-export function Tasks() {
+interface TasksProps {
+  tasks: string[];
+}
+
+export function Tasks({ tasks }: TasksProps) {
   return (
     <div className={styles.container}>
-      <div className={styles.task}>
-        <div className={styles.check}>
-          <button className={styles.checkButton} />
+      {tasks.map((task) => (
+        <div key={task} className={styles.taskWrapper}>
+          <div className={styles.task}>
+            <div className={styles.check}>
+              <button className={styles.checkButton} />
+            </div>
+            <p className={styles.taskText}>{task}</p>
+          </div>
+
+          <button title="Deletar task" className={styles.deleteTaskButton}>
+            <Trash size={20} />
+          </button>
         </div>
-        <p className={styles.taskText}>
-          Integer urna interdum massa libero auctor neque turpis turpis semper.
-          Duis vel sed fames integer.
-        </p>
-        <button title="Deletar task" className={styles.deleteTaskButton}>
-          <Trash size={20} />
-        </button>
-      </div>
+      ))}
     </div>
   );
 }
