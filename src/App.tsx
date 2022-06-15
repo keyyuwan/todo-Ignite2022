@@ -26,6 +26,12 @@ export function App() {
     setNewTask("");
   }
 
+  function deleteTask(task: string) {
+    const tasksWithoutTheDeletedOne = tasks.filter((item) => item !== task);
+
+    setTasks(tasksWithoutTheDeletedOne);
+  }
+
   const hasTasks = tasks.length > 0;
 
   return (
@@ -41,7 +47,11 @@ export function App() {
         <div className={styles.tasksContainer}>
           <TasksCounter />
 
-          {hasTasks ? <Tasks tasks={tasks} /> : <EmptyTasks />}
+          {hasTasks ? (
+            <Tasks tasks={tasks} onDeleteTask={deleteTask} />
+          ) : (
+            <EmptyTasks />
+          )}
         </div>
       </div>
     </>

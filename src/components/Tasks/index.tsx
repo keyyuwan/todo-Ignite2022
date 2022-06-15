@@ -4,9 +4,14 @@ import styles from "./styles.module.css";
 
 interface TasksProps {
   tasks: string[];
+  onDeleteTask: (task: string) => void;
 }
 
-export function Tasks({ tasks }: TasksProps) {
+export function Tasks({ tasks, onDeleteTask }: TasksProps) {
+  function handleDeleteTask(task: string) {
+    onDeleteTask(task);
+  }
+
   return (
     <div className={styles.container}>
       {tasks.map((task) => (
@@ -18,7 +23,11 @@ export function Tasks({ tasks }: TasksProps) {
             <p className={styles.taskText}>{task}</p>
           </div>
 
-          <button title="Deletar task" className={styles.deleteTaskButton}>
+          <button
+            onClick={() => handleDeleteTask(task)}
+            title="Deletar task"
+            className={styles.deleteTaskButton}
+          >
             <Trash size={20} />
           </button>
         </div>
