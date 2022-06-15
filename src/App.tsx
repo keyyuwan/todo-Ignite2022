@@ -62,6 +62,9 @@ export function App() {
   }
 
   const hasTasks = tasks.length > 0;
+  const createdTasksLength = tasks.length;
+  const doneTasks = tasks.filter((task) => task.done);
+  const doneTasksLengh = doneTasks.length;
 
   return (
     <>
@@ -74,7 +77,10 @@ export function App() {
         </div>
 
         <div className={styles.tasksContainer}>
-          <TasksCounter />
+          <TasksCounter
+            createdTasks={createdTasksLength}
+            doneTasks={doneTasksLengh}
+          />
 
           {hasTasks ? (
             <Tasks

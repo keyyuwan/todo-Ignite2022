@@ -16,8 +16,7 @@
 }
 
 .counter {
-  width: 25px;
-  height: 19px;
+  padding: 2px 8px;
   border-radius: 999px;
 
   font-size: 0.75rem;
