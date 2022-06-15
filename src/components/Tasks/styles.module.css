@@ -46,8 +46,32 @@
   background: rgba(30, 111, 159, 0.3);
 }
 
+.checkButtonDone {
+  height: 17.45px;
+  width: 17.45px;
+
+  background: var(--purple-dark);
+  color: var(--gray-100);
+  border: 0;
+  border-radius: 50%;
+
+  font-size: 0;
+
+  transition: 0.2s;
+}
+
+.checkButtonDone:hover {
+  background: var(--purple);
+}
+
 .taskText {
   color: var(--gray-100);
+  font-size: 0.875rem;
+}
+
+.taskTextDone {
+  color: var(--gray-300);
+  text-decoration: line-through;
   font-size: 0.875rem;
 }
 

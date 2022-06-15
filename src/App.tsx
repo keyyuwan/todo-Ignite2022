@@ -1,4 +1,6 @@
 import { ChangeEvent, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+
 import { AddTaskButton } from "./components/AddTaskButton";
 import { AddTaskInput } from "./components/AddTaskInput";
 import { EmptyTasks } from "./components/EmptyTasks";
@@ -9,8 +11,14 @@ import { TasksCounter } from "./components/TasksCounter";
 import styles from "./styles/App.module.css";
 import "./styles/global.css";
 
+export interface Task {
+  id: string;
+  task: string;
+  done: boolean;
+}
+
 export function App() {
-  const [tasks, setTasks] = useState<string[]>([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [newTask, setNewTask] = useState("");
 
   function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>) {
@@ -22,14 +30,35 @@ export function App() {
       return;
     }
 
-    setTasks([...tasks, newTask]);
+    const taskToBeAdded = {
+      id: uuidv4(),
+      task: newTask,
+      done: false,
+    };
+
+    setTasks([...tasks, taskToBeAdded]);
     setNewTask("");
   }
 
-  function deleteTask(task: string) {
-    const tasksWithoutTheDeletedOne = tasks.filter((item) => item !== task);
+  function deleteTask(taskId: string) {
+    const tasksWithoutTheDeletedOne = tasks.filter(
+      (item) => item.id !== taskId
+    );
 
     setTasks(tasksWithoutTheDeletedOne);
+  }
+
+  function toggleTaskDone(taskId: string) {
+    const chosenTask = tasks.find((task) => task.id === taskId);
+
+    const coppiedTasks = tasks.map((task) => ({ ...task }));
+    coppiedTasks.forEach((task) => {
+      if (task.id === chosenTask?.id) {
+        task.done = !task.done;
+      }
+    });
+
+    setTasks(coppiedTasks);
   }
 
   const hasTasks = tasks.length > 0;
@@ -48,7 +77,11 @@ export function App() {
           <TasksCounter />
 
           {hasTasks ? (
-            <Tasks tasks={tasks} onDeleteTask={deleteTask} />
+            <Tasks
+              tasks={tasks}
+              onDeleteTask={deleteTask}
+              onToggleTaskDone={toggleTaskDone}
+            />
           ) : (
             <EmptyTasks />
           )}
