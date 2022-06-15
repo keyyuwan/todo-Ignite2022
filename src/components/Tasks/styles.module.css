@@ -1,21 +1,58 @@
 .container {
   margin-top: 1.5rem;
-  height: 15.25rem;
+}
+
+.task {
+  padding: 1rem;
+  border: 1px solid var(--gray-400);
+  border-radius: 8px;
+
+  background: var(--gray-500);
 
   display: flex;
-  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.check {
+  height: 1.5rem;
+  width: 1.5rem;
+
+  display: flex;
   align-items: center;
   justify-content: center;
-
-  border-top: 1px solid var(--gray-400);
-  border-radius: 8px;
 }
 
-.clipboardImg {
-  margin-bottom: 1rem;
+.checkButton {
+  height: 17.45px;
+  width: 17.45px;
+
+  border: 2px solid var(--blue);
+  border-radius: 50%;
+
+  background: 0;
 }
 
-strong,
-p {
+.taskText {
+  color: var(--gray-100);
+  font-size: 0.875rem;
+}
+
+.deleteTaskButton {
+  width: 1.5rem;
+  height: 1.5rem;
+
+  background: 0;
   color: var(--gray-300);
+  border: 0;
+  outline: 0;
+  font-size: 0;
+
+  transition: 0.2s;
+}
+
+.deleteTaskButton:hover {
+  background: var(--gray-400);
+  color: var(--danger);
+  border-radius: 4px;
 }

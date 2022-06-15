@@ -1,17 +1,22 @@
-import styles from "./styles.module.css";
+import { Trash } from "phosphor-react";
 
-import clipboardImg from "../../assets/Clipboard.svg";
+import styles from "./styles.module.css";
 
 export function Tasks() {
   return (
     <div className={styles.container}>
-      <img
-        src={clipboardImg}
-        alt="Ícone de prancheta"
-        className={styles.clipboardImg}
-      />
-      <strong>Você ainda não tem tarefas cadastradas</strong>
-      <p>Crie tarefas e organize seus itens a fazer</p>
+      <div className={styles.task}>
+        <div className={styles.check}>
+          <button className={styles.checkButton} />
+        </div>
+        <p className={styles.taskText}>
+          Integer urna interdum massa libero auctor neque turpis turpis semper.
+          Duis vel sed fames integer.
+        </p>
+        <button title="Deletar task" className={styles.deleteTaskButton}>
+          <Trash size={20} />
+        </button>
+      </div>
     </div>
   );
 }
